@@ -16,6 +16,7 @@ export class CarouselComponent implements OnInit {
   @Input() imageSmallHeight:number = 80;
   @Input() imageSmallWidth:number = 160;
   @Input() showButtons:boolean = true;
+  @Input() lazyLoadImages:boolean = false;
   //------------------------------------------------------
 
   //------------------- View Childs ---------------------------
@@ -30,6 +31,7 @@ export class CarouselComponent implements OnInit {
   mainWidth:number = 0;
   mainHeight:number = 0;
   innerWidth:number = 0;
+  lazyLoading:string = "auto";
   //------------------------------------------------------
 
   constructor() { }
@@ -46,6 +48,7 @@ export class CarouselComponent implements OnInit {
 
   updateImageWH(){
     this.innerWidth = window.innerWidth;
+    console.log(this.innerWidth);
     if(this.innerWidth > 650){
       this.mainWidth = this.imageWidth;
       this.mainHeight = this.imageHeight;
