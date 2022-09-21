@@ -20,9 +20,5 @@ export class AppComponent {
       ScriptsLink:"https://script.google.com/macros/s/AKfycbzNxG4eQtCwgtATygH4hO6-wzRYn9_CxAl4nDZC7NKvFQWUlPfLWsEFuoDW1JJdGjCM/exec"
     }
     this.SessionManagement.SaveToSettingsLocal(JSON.stringify(saveObj));
-
-    this._cs.GetTvShowTitlesFromGenre("Animation").subscribe((response:any) => {
-      console.log(this._cs.ArrayShuffle(response));
-    });
   }
 }

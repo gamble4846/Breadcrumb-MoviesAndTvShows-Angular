@@ -17,7 +17,6 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 //----------------------------------------------------------------------------------------------
 
-
 registerLocaleData(en);
 
 @NgModule({

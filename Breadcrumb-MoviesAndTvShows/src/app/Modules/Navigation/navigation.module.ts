@@ -5,6 +5,9 @@ import { NavbarComponent } from './Navbar/navbar.component';
 import { HomeComponent } from './Home/home.component';
 import { NavigationRoutingModule } from './navigation-routing.module';
 
+//-------------------------------- GS Library --------------------------------------------------
+import { CarouselModule } from '../../gs-lib/carousel/carousel.module';
+//----------------------------------------------------------------------------------------------
 
 @NgModule({
   declarations: [
@@ -14,7 +17,8 @@ import { NavigationRoutingModule } from './navigation-routing.module';
   ],
   imports: [
     CommonModule,
-    NavigationRoutingModule
+    NavigationRoutingModule,
+    CarouselModule
   ],
   exports:[
     LoaderComponent,

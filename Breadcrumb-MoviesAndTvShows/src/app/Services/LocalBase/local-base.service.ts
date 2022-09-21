@@ -14,12 +14,14 @@ export class LocalBaseService {
   }
 
   SaveMoviesFromSheetAndToLocalBase(){
+    console.log("Saving Movies");
     let finalData = new Observable((observer:any) => {
       this.GoogleAppScripts.GetMovies().subscribe((response:any) => {
         if(response.status == "200"){
           let dataToAdd = {datas:response.data};
           this.db.collection('Movies').delete().then((resultLBDEL:any) => {
             this.db.collection('Movies').add(dataToAdd).then((resultLBADD:any) => {
+              console.log("Movies Done");
               observer.next(true);
               observer.complete();
             });
@@ -39,12 +41,14 @@ export class LocalBaseService {
   }
 
   SaveTvShowsFromSheetAndToLocalBase(){
+    console.log("Saving Tvshows");
     let finalData = new Observable((observer:any) => {
       this.GoogleAppScripts.GetTvshows().subscribe((response:any) => {
         if(response.status == "200"){
           let dataToAdd = {datas:response.data};
           this.db.collection('TvShows').delete().then((resultLBDEL:any) => {
             this.db.collection('TvShows').add(dataToAdd).then((resultLBADD:any) => {
+              console.log("Tvshows Done");
               observer.next(true);
               observer.complete();
             });

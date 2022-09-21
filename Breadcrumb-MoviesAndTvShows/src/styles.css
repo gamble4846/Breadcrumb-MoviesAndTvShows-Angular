@@ -6,8 +6,8 @@
 
 /*------------------------ Navbar Root ---------------------- */
 :root {
-  --menuBackgroundColor-gs-menu: #1C1C1E;
-  --mobileMenuBackgroundColor-gs-menu: #1c1c1efa;
+  --menuBackgroundColor-gs-menu: black;
+  --mobileMenuBackgroundColor-gs-menu: black;
   --menuHeight-gs-menu: 60px;
   --mobileMenuWidth-gs-menu: 300px;
   --menuLinksColor-gs-menu: rgb(247, 247, 247);
@@ -18,3 +18,15 @@
   --mobileMenuExitDivColor-gs-menu: grey;
 }
 /* ---------------------------------------------------------- */
+
+.navBarContainer{
+  height: var(--menuHeight-gs-menu);
+}
+
+.routerContainer{
+  height: calc(100vh - var(--menuHeight-gs-menu));
+  overflow: auto;
+  background-color: #181818;
+  color: white;
+}
+
