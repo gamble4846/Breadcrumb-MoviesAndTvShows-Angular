@@ -14,6 +14,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //-------------------------------------- NG ZORRO ----------------------------------------------
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NavbarComponent } from './Modules/Navigation/Navbar/navbar.component';
+import { HomeComponent } from './Modules/Movies/Home/home.component';
+import { OpenerComponent } from './Modules/Movies/Opener/opener.component';
+import { LoaderComponent } from './Modules/Navigation/Loader/loader.component';
 //----------------------------------------------------------------------------------------------
 
 
@@ -21,7 +25,11 @@ registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    OpenerComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
