@@ -2,3 +2,19 @@
 @import "~ng-zorro-antd/ng-zorro-antd.min.css";
 @import "~ng-zorro-antd/style/index.min.css"; /* Import base styles */
 @import "~ng-zorro-antd/button/style/index.min.css";  /* Import one component's styles */
+
+
+/*------------------------ Navbar Root ---------------------- */
+:root {
+  --menuBackgroundColor-gs-menu: #1C1C1E;
+  --mobileMenuBackgroundColor-gs-menu: #1c1c1efa;
+  --menuHeight-gs-menu: 60px;
+  --mobileMenuWidth-gs-menu: 300px;
+  --menuLinksColor-gs-menu: rgb(247, 247, 247);
+  --menuLinksHoverColor-gs-menu: red;
+  --activeLinksColor-gs-menu: grey;
+  --activeLinkLineColor-gs-menu: grey;
+  --activeLinkLineBottom-gs-menu: -22px;
+  --mobileMenuExitDivColor-gs-menu: grey;
+}
+/* ---------------------------------------------------------- */

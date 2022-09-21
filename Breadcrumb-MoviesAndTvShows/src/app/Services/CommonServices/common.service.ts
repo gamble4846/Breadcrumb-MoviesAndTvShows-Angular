@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LocalBaseService } from '../LocalBase/local-base.service';
 
@@ -7,7 +8,7 @@ import { LocalBaseService } from '../LocalBase/local-base.service';
 })
 export class CommonService {
 
-  constructor(private LocalBase: LocalBaseService) { }
+  constructor(private LocalBase: LocalBaseService, private router:Router) { }
 
   onlyUnique(value:any, index:any, self:any) {
     return self.indexOf(value) === index;
@@ -78,5 +79,9 @@ export class CommonService {
       [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
     return array;
+  }
+
+  ChangePage(route:string){
+    this.router.navigate([route]);
   }
 }
