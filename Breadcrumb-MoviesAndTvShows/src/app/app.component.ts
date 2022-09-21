@@ -20,7 +20,7 @@ export class AppComponent {
     }
     this.SessionManagement.SaveToSettingsLocal(JSON.stringify(saveObj));
 
-    this.LocalBase.GetMoviesLinksFromLocalByServerIdAndMovieId("1qu39fdEI_1lCjeXp8I99YEqAxVdlxqPPDEmzYKzdM6w",1).subscribe((response:any) => {
+    this.LocalBase.GetEpisodeLinksFromLocalByServerIdAndEpisodeId("1mARC5FKqZas9sBg0FrRJJnc4v-U0Bj70bLG7Dt8eNFA",3).subscribe((response:any) => {
       console.log(response);
     });
   }

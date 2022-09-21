@@ -106,7 +106,39 @@ export class LocalBaseService {
     return finalData;
   }
 
-  GetTvShowSeasonsFromLocalByServerIdAndTvShowId(){
+  GetTvShowSeasonsFromLocalByServerIdAndTvShowId(ServerId:any, TvShowId:any){
+    let finalData = new Observable((observer:any) => {
+      this.db.collection('TvShows').get().then((resultGET:any) => {
+        let allSeasons:any = [];
+        allSeasons = resultGET[0].datas.find((x:any) => x.ServerID == ServerId).Data.Seasons.filter((x:any) => x.Series_Id == TvShowId);
+        observer.next(allSeasons);
+        observer.complete();
+      });
+    })
+    return finalData;
+  }
 
+  GetTvShowEpisodesFromLocalByServerIdAndSeasonId(ServerId:any, SeasonId:any){
+    let finalData = new Observable((observer:any) => {
+      this.db.collection('TvShows').get().then((resultGET:any) => {
+        let allSeasons:any = [];
+        allSeasons = resultGET[0].datas.find((x:any) => x.ServerID == ServerId).Data.Episodes.filter((x:any) => x.Season_Id == SeasonId);
+        observer.next(allSeasons);
+        observer.complete();
+      });
+    })
+    return finalData;
+  }
+
+  GetEpisodeLinksFromLocalByServerIdAndEpisodeId(ServerId:any, EpisodeId:any){
+    let finalData = new Observable((observer:any) => {
+      this.db.collection('TvShows').get().then((resultGET:any) => {
+        let allSeasons:any = [];
+        allSeasons = resultGET[0].datas.find((x:any) => x.ServerID == ServerId).Data.Links.filter((x:any) => x.Episode_Id == EpisodeId);
+        observer.next(allSeasons);
+        observer.complete();
+      });
+    })
+    return finalData;
   }
 }
