@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './Home/home.component';
 import { OpenerComponent } from './Opener/opener.component';
 
+import { MoviesRoutingModule } from './movies-routing.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { OpenerComponent } from './Opener/opener.component';
     OpenerComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MoviesRoutingModule
   ]
 })
 export class MoviesModule { }

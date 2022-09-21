@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './Home/home.component';
 import { OpenerComponent } from './Opener/opener.component';
-
+import { TvShowsRoutingModule } from './tv-shows-routing.module';
 
 
 @NgModule({
@@ -11,7 +11,8 @@ import { OpenerComponent } from './Opener/opener.component';
     OpenerComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    TvShowsRoutingModule
   ]
 })
 export class TvShowsModule { }
