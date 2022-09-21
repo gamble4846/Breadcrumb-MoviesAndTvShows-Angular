@@ -30,3 +30,24 @@
   color: white;
 }
 
+/* ------------------------- SCROLL ------------------------- */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: sblack; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: rgb(100, 0, 0); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: red; 
+}
+/* ---------------------------------------------------------- */
+
+
+

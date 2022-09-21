@@ -17,6 +17,9 @@ export class CarouselComponent implements OnInit {
   @Input() imageSmallWidth:number = 160;
   @Input() showButtons:boolean = true;
   @Input() lazyLoadImages:boolean = false;
+  @Input() imageBorderradius:string = "5px";
+  @Input() imageBorder:string = "1px solid #888;";
+  @Input() scrollSpeed:number = 10;
   //------------------------------------------------------
 
   //------------------- View Childs ---------------------------
@@ -32,6 +35,7 @@ export class CarouselComponent implements OnInit {
   mainHeight:number = 0;
   innerWidth:number = 0;
   lazyLoading:string = "auto";
+  scrollSpeedreverse:number = 0;
   //------------------------------------------------------
 
   constructor() { }
@@ -44,11 +48,11 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateImageWH();
+    this.scrollSpeedreverse = -Math.abs(this.scrollSpeed);
   }
 
   updateImageWH(){
     this.innerWidth = window.innerWidth;
-    console.log(this.innerWidth);
     if(this.innerWidth > 650){
       this.mainWidth = this.imageWidth;
       this.mainHeight = this.imageHeight;

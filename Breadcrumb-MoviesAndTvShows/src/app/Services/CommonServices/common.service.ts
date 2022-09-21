@@ -84,4 +84,20 @@ export class CommonService {
   ChangePage(route:string){
     this.router.navigate([route]);
   }
+
+  ShowFullPageLoader(textToShowUnder:any = null){
+    if(textToShowUnder){
+      let x:any = document.getElementById("fullPageLoaderText");
+      x.innerHTML = textToShowUnder;
+    }
+    else{
+      let x:any = document.getElementById("fullPageLoaderText");
+      x.innerHTML = "";
+    }
+    document.getElementById("fullPageLoaderContainer")?.classList.add("show");
+  }
+
+  HideFullPageLoader(){
+    document.getElementById("fullPageLoaderContainer")?.classList.remove("show");
+  }
 }

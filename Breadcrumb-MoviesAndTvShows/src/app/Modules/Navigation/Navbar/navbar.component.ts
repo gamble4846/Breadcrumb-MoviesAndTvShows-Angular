@@ -14,7 +14,9 @@ export class NavbarComponent implements OnInit {
     {name:"Home", route:"/Home"},
     {name:"Movies", route:"/Movies"},
     {name:"TvShows", route:"/TvShows"},
-    {name:"Settings", route:"/Settings"}
+    {name:"Settings", route:"/Settings"},
+    {name:"Search", route:"/Search"},
+    {name:"Admin", route:"/Admin"}
   ];
 
   constructor(private _cs:CommonService) { }

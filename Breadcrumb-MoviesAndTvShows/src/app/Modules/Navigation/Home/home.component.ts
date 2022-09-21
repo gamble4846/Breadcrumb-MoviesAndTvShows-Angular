@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   carouselDataWithGenre:any = [];
   AllMovieGenre:any;
   AllTvShowGenre:any;
+  onErrorImageLink:string = `https://lh3.googleusercontent.com/pw/AL9nZEWqLCv7P3AFK1FNr_qwohZgkup1TER-mOHfQPAt6IglASRtgadX_qfCuVPZQxr2hmYmyKEdbTtqt8nGZiRaWY3UyHolj2vNm8BY7UwBwzXQhtQtbltOEFjBUwaF4n43DIw0IiRpNBlnkfpAZPAgeq3aFg=w1588-h893-no?authuser=0`;
 
   constructor(private SessionManagement: SessionManagementService, private LocalBase: LocalBaseService, private _cs:CommonService) { }
 
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
   }
 
   setUpMainpageTitles(){
+    this._cs.ShowFullPageLoader();
     this._cs.GetListOfAllGenreMovies().subscribe((movieGenre:any) => {
       this._cs.GetListOfAllGenreTvShow().subscribe((tvShowGenre:any) => {
         this.AllMovieGenre = this._cs.ArrayShuffle(movieGenre);
@@ -37,7 +39,8 @@ export class HomeComponent implements OnInit {
               let carouselData:carouselData = {
                 title: title.Movies_MainName,
                 imageLink: title.Movies_Poster,
-                id: title.Movies_Id
+                id: title.Movies_Id,
+                otherData: title
               }
               fullCarouselData.push(carouselData);
             });
@@ -58,7 +61,8 @@ export class HomeComponent implements OnInit {
               let carouselData:carouselData = {
                 title: title.Series_MainName,
                 imageLink: title.Series_Poster,
-                id: title.Series_Id
+                id: title.Series_Id,
+                otherData: title
               }
               fullCarouselData.push(carouselData);
             });
@@ -77,14 +81,13 @@ export class HomeComponent implements OnInit {
 
   CheckIfGettingDataIsCompleted(){
     if(this.AllMovieGenre.length + this.AllTvShowGenre.length == this.carouselDataWithGenre.length){
-      console.log("completed");
       this.carouselDataWithGenre = this._cs.ArrayShuffle(this.carouselDataWithGenre);
-      console.log(this.carouselDataWithGenre);
+      this._cs.HideFullPageLoader();
     }
   }
 
   carouselItemClicked(event:any){
-
+    console.log(event);
   };
 
 
