@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonService } from './Services/CommonServices/common.service';
 import { LocalBaseService } from './Services/LocalBase/local-base.service';
 import { SessionManagementService } from './Services/SessionManagement/session-management.service';
 
@@ -10,7 +11,7 @@ import { SessionManagementService } from './Services/SessionManagement/session-m
 export class AppComponent {
   title = 'Breadcrumb Movies And TvShows';
 
-  constructor(private SessionManagement: SessionManagementService, private LocalBase: LocalBaseService) { }
+  constructor(private SessionManagement: SessionManagementService, private LocalBase: LocalBaseService, private _cs:CommonService) { }
 
   ngOnInit(): void {
     let saveObj = {
@@ -20,8 +21,8 @@ export class AppComponent {
     }
     this.SessionManagement.SaveToSettingsLocal(JSON.stringify(saveObj));
 
-    this.LocalBase.GetEpisodeLinksFromLocalByServerIdAndEpisodeId("1mARC5FKqZas9sBg0FrRJJnc4v-U0Bj70bLG7Dt8eNFA",3).subscribe((response:any) => {
-      console.log(response);
+    this._cs.GetTvShowTitlesFromGenre("Animation").subscribe((response:any) => {
+      console.log(this._cs.ArrayShuffle(response));
     });
   }
 }
