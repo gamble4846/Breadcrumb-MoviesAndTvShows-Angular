@@ -4,6 +4,9 @@ import { HomeComponent } from './Home/home.component';
 import { OpenerComponent } from './Opener/opener.component';
 import { TvShowsRoutingModule } from './tv-shows-routing.module';
 
+//-------------------------------- GS Library --------------------------------------------------
+import { CarouselModule } from '../../gs-lib/carousel/carousel.module';
+//----------------------------------------------------------------------------------------------
 
 @NgModule({
   declarations: [
@@ -12,7 +15,8 @@ import { TvShowsRoutingModule } from './tv-shows-routing.module';
   ],
   imports: [
     CommonModule,
-    TvShowsRoutingModule
+    TvShowsRoutingModule,
+    CarouselModule
   ]
 })
 export class TvShowsModule { }

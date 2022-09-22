@@ -1,4 +1,4 @@
-<div *ngFor="let carouselData of carouselDataWithGenre" class="genreCarousel">
+<div *ngFor="let carouselData of carouselDataWithGenreToDisplay" class="genreCarousel">
   <div class="genreName">{{carouselData.genre}} - {{carouselData.movieOrTvShow}}s</div>
   <gs-carousel [scrollSpeed]="30" [imageBorder]="''" [imageBorderradius]="'5px'" [lazyLoadImages]="true" [imageSmallHeight]="85" [imageSmallWidth]="150" [imageHeight]="160" [imageWidth]="285" [carouselData]="carouselData.data" [hiddenScrollBar]="true" [showButtons]="true" (itemClicked)="carouselItemClicked($event)"></gs-carousel>
 </div>

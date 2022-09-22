@@ -5,6 +5,9 @@ import { OpenerComponent } from './Opener/opener.component';
 
 import { MoviesRoutingModule } from './movies-routing.module';
 
+//-------------------------------- GS Library --------------------------------------------------
+import { CarouselModule } from '../../gs-lib/carousel/carousel.module';
+//----------------------------------------------------------------------------------------------
 
 @NgModule({
   declarations: [
@@ -13,7 +16,8 @@ import { MoviesRoutingModule } from './movies-routing.module';
   ],
   imports: [
     CommonModule,
-    MoviesRoutingModule
+    MoviesRoutingModule,
+    CarouselModule
   ]
 })
 export class MoviesModule { }
