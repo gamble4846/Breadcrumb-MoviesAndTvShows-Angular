@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit {
     else if(MovieOrTvShow == "TvShow"){
       this._cs.OpenTvShow(event.otherData.ServerId,event.otherData.Series_Id);
     }
-    console.log(event,MovieOrTvShow);
   };
 
 }

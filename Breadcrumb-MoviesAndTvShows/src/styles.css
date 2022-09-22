@@ -59,4 +59,18 @@
   margin: 30px 0px;
 }
 
+.settings-container{
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: white !important;
+}
+
+.settings-container .ant-form-item-label>label {
+  color: white !important;
+}
+
+.settings-container h1{
+  color: white !important;
+}
 

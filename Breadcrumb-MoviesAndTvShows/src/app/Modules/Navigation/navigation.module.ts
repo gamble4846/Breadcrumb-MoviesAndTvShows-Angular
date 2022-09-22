@@ -5,6 +5,7 @@ import { NavbarComponent } from './Navbar/navbar.component';
 import { HomeComponent } from './Home/home.component';
 import { NavigationRoutingModule } from './navigation-routing.module';
 import { SettingsComponent } from './Settings/settings.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //-------------------------------- GS Library --------------------------------------------------
 import { CarouselModule } from '../../gs-lib/carousel/carousel.module';
@@ -12,6 +13,10 @@ import { CarouselModule } from '../../gs-lib/carousel/carousel.module';
 
 //--------------------------------- NG ZORO ----------------------------------------------------
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 //----------------------------------------------------------------------------------------------
 
 
@@ -26,7 +31,13 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     CommonModule,
     NavigationRoutingModule,
     CarouselModule,
-    NzSpinModule
+    NzSpinModule,
+    NzFormModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzInputModule,
+    NzIconModule,
+    NzButtonModule
   ],
   exports:[
     LoaderComponent,

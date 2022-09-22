@@ -14,11 +14,5 @@ export class AppComponent {
   constructor(private SessionManagement: SessionManagementService, private LocalBase: LocalBaseService, private _cs:CommonService) { }
 
   ngOnInit(): void {
-    let saveObj = {
-      DecryptionKey:"admin123#$Jay",
-      GoogleAPIKey:"AIzaSyC_vYeUmpPU3o2qa-SHIvM87hmZJugT50Y",
-      ScriptsLink:"https://script.google.com/macros/s/AKfycbzNxG4eQtCwgtATygH4hO6-wzRYn9_CxAl4nDZC7NKvFQWUlPfLWsEFuoDW1JJdGjCM/exec"
-    }
-    this.SessionManagement.SaveToSettingsLocal(JSON.stringify(saveObj));
   }
 }
