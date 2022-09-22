@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
       this.carouselDataWithGenre = this.carouselDataWithGenre.concat(response);
       titlesCount++;
       if(titlesCount == 2){
+        this.carouselDataWithGenre = this._cs.ArrayShuffle(this.carouselDataWithGenre);
         this.carouselDataWithGenreToDisplay = [...this.carouselDataWithGenre];
         this._cs.HideFullPageLoader();
       }
@@ -41,13 +42,20 @@ export class HomeComponent implements OnInit {
       this.carouselDataWithGenre = this.carouselDataWithGenre.concat(response);
       titlesCount++;
       if(titlesCount == 2){
+        this.carouselDataWithGenre = this._cs.ArrayShuffle(this.carouselDataWithGenre);
         this.carouselDataWithGenreToDisplay = [...this.carouselDataWithGenre];
         this._cs.HideFullPageLoader();
       }
     });
   }
 
-  carouselItemClicked(event:any){
-    console.log(event);
+  carouselItemClicked(event:any,MovieOrTvShow:any){
+    if(MovieOrTvShow == "Movie"){
+      this._cs.OpenMoive(event.otherData.ServerId,event.otherData.Movies_Id);
+    }
+    else if(MovieOrTvShow == "TvShow"){
+      this._cs.OpenTvShow(event.otherData.ServerId,event.otherData.Series_Id);
+    }
+    console.log(event,MovieOrTvShow);
   };
 }

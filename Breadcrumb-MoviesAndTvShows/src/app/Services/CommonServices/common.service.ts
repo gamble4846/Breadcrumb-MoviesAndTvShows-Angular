@@ -173,4 +173,12 @@ export class CommonService {
     })
     return finalData;
   }
+
+  OpenMoive(ServerId:any, MovieId:any){
+    this.router.navigate(['/Movies/Home', ServerId, MovieId]);
+  }
+
+  OpenTvShow(ServerId:any, TvShowId:any){
+    this.router.navigate(['/TvShows/Home', ServerId, TvShowId]);
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-opener',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OpenerComponent implements OnInit {
 
-  constructor() { }
+  MovieId:any;
+  ServerId:any;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.MovieId = this.route.snapshot.paramMap.get('MovieId');
+    this.ServerId = this.route.snapshot.paramMap.get('ServerId');
   }
 
 }
