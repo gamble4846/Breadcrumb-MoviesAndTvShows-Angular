@@ -1,3 +1,23 @@
-<p>Movies opener works!</p>
-{{MovieId}}<br>
-{{ServerId}}<br>
+<div class="movieOpenerContainer">
+    <div class="movieImageContainer">
+        <img [src]="MovieTitle.Movies_Poster" class="movieImage">
+    </div>
+    <div class="movieDataContainer">
+        <div class="movieName">{{MovieTitle.Movies_MainName}}</div>
+        <div class="secondaryData">
+            <div>{{MovieTitle.Movies_ReleaseYear}} | {{MovieTitle.Movies_AltNames}} | {{MovieTitle.Movie_IMDB_ID}}</div>
+            <div>{{MovieTitle.Movies_Genre}}</div>
+        </div>
+        <div class="descriptionData">
+            {{MovieTitle.Movies_ExtraInformation}}
+        </div>
+        <div class="actorsAndDirectorsData">
+            <div>
+                <span class="label">Starring:</span><span>{{MovieTitle.Movies_Stars}}</span>
+            </div>
+            <div>
+                <span class="label">Directors:</span><span>{{MovieTitle.Movies_Directors}}</span>
+            </div>
+        </div>
+    </div>
+</div>
