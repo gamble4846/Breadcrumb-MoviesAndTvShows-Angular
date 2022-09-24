@@ -1,23 +1,111 @@
 <div class="movieOpenerContainer">
-    <div class="movieImageContainer">
-        <img [src]="MovieTitle.Movies_Poster" class="movieImage">
+  <div class="movieImageContainer">
+    <img [src]="MovieTitle.Movies_Poster" class="movieImage" loading="lazy">
+  </div>
+  <div class="movieDataContainer">
+    <div class="movieName">{{MovieTitle.Movies_MainName}}</div>
+    <div class="secondaryData">
+      <div>{{MovieTitle.Movies_ReleaseYear}} | {{MovieTitle.Movies_AltNames}} | {{MovieTitle.Movie_IMDB_ID}}</div>
+      <div>{{MovieTitle.Movies_Genre}}</div>
     </div>
-    <div class="movieDataContainer">
-        <div class="movieName">{{MovieTitle.Movies_MainName}}</div>
-        <div class="secondaryData">
-            <div>{{MovieTitle.Movies_ReleaseYear}} | {{MovieTitle.Movies_AltNames}} | {{MovieTitle.Movie_IMDB_ID}}</div>
-            <div>{{MovieTitle.Movies_Genre}}</div>
-        </div>
-        <div class="descriptionData">
-            {{MovieTitle.Movies_ExtraInformation}}
-        </div>
-        <div class="actorsAndDirectorsData">
-            <div>
-                <span class="label">Starring:</span><span>{{MovieTitle.Movies_Stars}}</span>
-            </div>
-            <div>
-                <span class="label">Directors:</span><span>{{MovieTitle.Movies_Directors}}</span>
-            </div>
-        </div>
+    <div class="descriptionData">
+      {{MovieTitle.Movies_ExtraInformation}}
     </div>
+    <div class="actorsAndDirectorsData">
+      <div>
+        <span class="label">Starring:</span><span>{{MovieTitle.Movies_Stars}}</span>
+      </div>
+      <div>
+        <span class="label">Directors:</span><span>{{MovieTitle.Movies_Directors}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="movieLinksContainer">
+    <table class="movieLinksTable">
+      <thead>
+        <tr>
+          <th width="5%" class="eclipsisText hideBefore500">#</th>
+          <th width="10%" class="eclipsisText">Quality</th>
+          <th width="10%" class="eclipsisText">Language</th>
+          <th class="hideBefore800 eclipsisText">Subtitle</th>
+          <th width="10%" class="eclipsisText">Size</th>
+          <th width="10%" class="eclipsisText">Streamable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let link of MovieLinks; let i = index" (click)="showLinksModal(link)">
+          <td class="hideBefore500">{{i + 1}}</td>
+          <td>{{link.Link_Quality}}</td>
+          <td>{{link.Link_Language}}</td>
+          <td class="hideBefore800 eclipsisText">{{link.Link_Subtitles}}</td>
+          <td>{{link.Link_Size}}</td>
+          <td>{{link.Streamable}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+
+
+<gs-modal [showModal]="showLinkModal" [showFooter]="false" (closeModal)="hideLinksModal($event)" modalWidth="1200px" modalHeight="600px" modalBackgroundColor="#00000066" HeaderBackgroundColor="#28282B" ContentBackgroundColor="#28282B">
+  <div header>Link</div>
+  <div content style="height: 100%;">
+    <div class="linkModalContentContainer">
+      <div class="movieLinksContainer">
+        <table class="LinkDataTable">
+          <tbody>
+            <tr>
+              <td width="30%">Language</td>
+              <td width="70%">{{selectedLink.Link_Language}}</td>
+            </tr>
+            <tr>
+              <td width="30%">Quality</td>
+              <td width="70%">{{selectedLink.Link_Quality}}</td>
+            </tr>
+            <tr>
+              <td width="30%">Subtitles</td>
+              <td width="70%">{{selectedLink.Link_Subtitles}}</td>
+            </tr>
+            <tr>
+              <td width="30%">Streamable</td>
+              <td width="70%">{{selectedLink.Streamable}}</td>
+            </tr>
+            <tr>
+              <td width="30%">Size</td>
+              <td width="70%">{{selectedLink.Link_Size}}</td>
+            </tr>
+            <tr>
+              <td width="30%">Password</td>
+              <td width="70%" style="cursor: copy;" (click)="_cs.CopyToClipboard(selectedLink.Link_Password)">{{selectedLink.Link_Password}}</td>
+            </tr>
+            <tr>
+              <td width="30%">Buttons</td>
+              <td width="70%">
+                <div class="buttonsContainer">
+                  <div class="buttonContainer">
+                    <button nz-button nzType="default" nzDanger class="linkButton" (click)="_cs.OpenLink(selectedLink.Link_link)">Open Link</button>
+                  </div>
+                  <div class="buttonContainer">
+                    <button nz-button nzType="default" nzDanger class="linkButton"(click)="_cs.CopyToClipboard(selectedLink.Link_link)">Copy Link</button>
+                  </div>
+                  <div class="buttonContainer">
+                    <button nz-button nzType="default" nzDanger class="linkButton">View Link</button>
+                  </div>
+                  <div class="buttonContainer">
+                    <button nz-button nzType="default" nzDanger class="linkButton" (click)="_cs.OpenLink(_cs.CreateDirectLinkFromLink(selectedLink.Link_link))">Open Direct Link</button>
+                  </div>
+                  <div class="buttonContainer">
+                    <button nz-button nzType="default" nzDanger class="linkButton">View Direct Link</button>
+                  </div>
+                  <div class="buttonContainer">
+                    <button nz-button nzType="default" nzDanger class="linkButton">Copy Direct Link</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</gs-modal>

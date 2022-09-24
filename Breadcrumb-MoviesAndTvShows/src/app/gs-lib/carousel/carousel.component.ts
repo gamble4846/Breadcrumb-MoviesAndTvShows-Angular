@@ -20,6 +20,7 @@ export class CarouselComponent implements OnInit {
   @Input() imageBorderradius:string = "5px";
   @Input() imageBorder:string = "1px solid #888;";
   @Input() scrollSpeed:number = 10;
+  @Input() scrollButtonsColor:string = "";
   //------------------------------------------------------
 
   //------------------- View Childs ---------------------------

@@ -181,4 +181,20 @@ export class CommonService {
   OpenTvShow(ServerId:any, TvShowId:any){
     this.router.navigate(['/TvShows/Home', ServerId, TvShowId]);
   }
+
+  OpenLink(link:string){
+    console.log(link);
+    window.open(link);
+  }
+
+  CopyToClipboard(data:string){
+    console.log(data);
+    navigator.clipboard.writeText(data);
+  }
+
+  CreateDirectLinkFromLink(link:string){
+    let justID = link.split("/")[5];
+    console.log(justID);
+    return "";
+  }
 }

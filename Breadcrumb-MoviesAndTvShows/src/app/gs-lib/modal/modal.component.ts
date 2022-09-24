@@ -20,6 +20,9 @@ export class ModalComponent implements OnInit {
   @Input() showFooter:boolean = true;
   @Input() transitionTime:number = 0.8;
   @Input() modalZIndex:number = 20;
+  @Input() HeaderBackgroundColor:string = "transparent";
+  @Input() ContentBackgroundColor:string = "transparent";
+  @Input() FooterBackgroundColor:string = "transparent";
   //-----------------------------------------------------
 
   //------------------- GLOBALS ---------------------------

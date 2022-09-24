@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CommonService } from 'src/app/Services/CommonServices/common.service';
 import { LocalBaseService } from 'src/app/Services/LocalBase/local-base.service';
 
 @Component({
@@ -13,8 +14,10 @@ export class OpenerComponent implements OnInit {
   ServerId:any;
   MovieTitle:any = {};
   MovieLinks:any = [];
+  showLinkModal:boolean = false;
+  selectedLink:any = {};
 
-  constructor(private route: ActivatedRoute, private LocalBase: LocalBaseService) { }
+  constructor(private route: ActivatedRoute, private LocalBase: LocalBaseService, public _cs: CommonService) { }
 
   ngOnInit(): void {
     this.MovieId = this.route.snapshot.paramMap.get('MovieId');
@@ -33,5 +36,17 @@ export class OpenerComponent implements OnInit {
       this.MovieLinks = response;
       console.log(this.MovieLinks);
     })
+  }
+
+  hideLinksModal(event:any){
+    if(event){
+      this.showLinkModal = false;
+    }
+    console.log(event);
+  }
+
+  showLinksModal(link:any){
+    this.showLinkModal = true;
+    this.selectedLink = link;
   }
 }

@@ -7,7 +7,10 @@ import { MoviesRoutingModule } from './movies-routing.module';
 
 //-------------------------------- GS Library --------------------------------------------------
 import { CarouselModule } from '../../gs-lib/carousel/carousel.module';
+import { ModalModule } from '../../gs-lib/modal/modal.module';
 //----------------------------------------------------------------------------------------------
+
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,9 @@ import { CarouselModule } from '../../gs-lib/carousel/carousel.module';
   imports: [
     CommonModule,
     MoviesRoutingModule,
-    CarouselModule
+    CarouselModule,
+    ModalModule,
+    NzButtonModule
   ]
 })
 export class MoviesModule { }
