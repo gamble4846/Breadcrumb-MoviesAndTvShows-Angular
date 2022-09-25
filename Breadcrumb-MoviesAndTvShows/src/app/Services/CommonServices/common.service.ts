@@ -3,13 +3,14 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LocalBaseService } from '../LocalBase/local-base.service';
 import { carouselData } from '../../../../src/app/gs-lib/carousel/carouselData.model';
+import { SessionManagementService } from  '../../Services/SessionManagement/session-management.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
 
-  constructor(private LocalBase: LocalBaseService, private router:Router) { }
+  constructor(private LocalBase: LocalBaseService, private router:Router, private SessionManagement: SessionManagementService) { }
 
   onlyUnique(value:any, index:any, self:any) {
     return self.indexOf(value) === index;
@@ -194,7 +195,7 @@ export class CommonService {
 
   CreateDirectLinkFromLink(link:string){
     let justID = link.split("/")[5];
-    console.log(justID);
-    return "";
+    let finalLink = "https://www.googleapis.com/drive/v3/files/"+justID+"alt=media&key=" + this.SessionManagement.GetSettingsFromLocal("GoogleAPIKey");
+    return finalLink;
   }
 }
