@@ -6,7 +6,14 @@ import { TvShowsRoutingModule } from './tv-shows-routing.module';
 
 //-------------------------------- GS Library --------------------------------------------------
 import { CarouselModule } from '../../gs-lib/carousel/carousel.module';
+import { ModalModule } from '../../gs-lib/modal/modal.module';
 //----------------------------------------------------------------------------------------------
+
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { FormsModule } from '@angular/forms';
+import { PipesModule } from '../Pipes/pipes.module';
+
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @NgModule({
   declarations: [
@@ -16,7 +23,12 @@ import { CarouselModule } from '../../gs-lib/carousel/carousel.module';
   imports: [
     CommonModule,
     TvShowsRoutingModule,
-    CarouselModule
+    CarouselModule,
+    NzSelectModule,
+    FormsModule,
+    ModalModule,
+    PipesModule,
+    NzButtonModule
   ]
 })
 export class TvShowsModule { }
