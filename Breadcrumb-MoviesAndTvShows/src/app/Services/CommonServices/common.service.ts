@@ -193,7 +193,7 @@ export class CommonService {
 
   CreateDirectLinkFromLink(link:string){
     let justID = link.split("/")[5];
-    let finalLink = "https://www.googleapis.com/drive/v3/files/"+justID+"alt=media&key=" + this.SessionManagement.GetSettingsFromLocal("GoogleAPIKey");
+    let finalLink = "https://www.googleapis.com/drive/v3/files/"+justID+"?alt=media&key=" + this.SessionManagement.GetSettingsFromLocal("GoogleAPIKey");
     return finalLink;
   }
 }
