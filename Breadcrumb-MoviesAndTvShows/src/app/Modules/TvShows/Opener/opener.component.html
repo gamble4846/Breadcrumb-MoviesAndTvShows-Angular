@@ -20,11 +20,9 @@
         </nz-select>
       </div>
       <div class="card" *ngFor="let episode of currentEpisodes;" (click)="showEpisodeLinksModel(episode)">
-        <div class="card-head">
+        <div class="card-head" style="border-bottom: 0px;">
           <div style="font-size: 15px;" class="card-row">{{episode.Episode_Number}}. {{episode.Episode_Name}}</div>
-        </div>
-        <div class="card-foot">
-          <div style="font-size: 12px;">Release Date - {{getFormatedDate(episode.Episode_ReleaseDate)}}</div>
+          <div style="font-size: 12px; color: #a3a3a3" class="card-row">Release Date - {{getFormatedDate(episode.Episode_ReleaseDate)}}</div>
         </div>
       </div>
     </div>

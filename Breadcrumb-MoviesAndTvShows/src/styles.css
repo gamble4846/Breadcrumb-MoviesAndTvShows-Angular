@@ -26,7 +26,7 @@
 .routerContainer{
   height: calc(100vh - var(--menuHeight-gs-menu));
   overflow: auto;
-  background-color: #181818;
+  background-color: #222222;
   color: white;
 }
 
@@ -37,15 +37,15 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: sblack; 
+  background: sblack;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-  background: rgb(100, 0, 0); 
+  background: rgb(100, 0, 0);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: red; 
+  background: red;
 }
 /* ---------------------------------------------------------- */
 
