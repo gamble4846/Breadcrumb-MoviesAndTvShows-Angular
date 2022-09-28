@@ -16,9 +16,9 @@ export class NavbarComponent implements OnInit {
     {name:"Home", route:"/Home"},
     {name:"Movies", route:"/Movies"},
     {name:"TvShows", route:"/TvShows"},
-    {name:"Settings", route:"/Settings"},
-    {name:"Search", route:"/Search"},
+    {name:"Browse", route:"/Browse"},
     {name:"Admin", route:"/Admin"},
+    {name:"Settings", route:"/Settings"},
     {name:"Refresh Data", route:"justRefreshData"}
   ];
 
