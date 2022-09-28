@@ -179,6 +179,10 @@ export class CommonService {
     this.router.navigate(['/Movies/Home', ServerId, MovieId]);
   }
 
+  OpenSettings(){
+    this.router.navigate(['/Settings']);
+  }
+
   OpenTvShow(ServerId:any, TvShowId:any){
     this.router.navigate(['/TvShows/Home', ServerId, TvShowId]);
   }

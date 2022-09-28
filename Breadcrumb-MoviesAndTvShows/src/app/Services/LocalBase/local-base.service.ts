@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 //@ts-ignore
 import Localbase from 'localbase';
 import { Observable } from 'rxjs';
+import { CommonService } from '../CommonServices/common.service';
 import { GoogleAppScritsService } from '../GoogleAppScripts/google-app-scrits.service';
 
 @Injectable({
@@ -9,7 +11,7 @@ import { GoogleAppScritsService } from '../GoogleAppScripts/google-app-scrits.se
 })
 export class LocalBaseService {
   db:any;
-  constructor(public GoogleAppScripts: GoogleAppScritsService) {
+  constructor(private router:Router, public GoogleAppScripts: GoogleAppScritsService) {
     this.db = new Localbase('BreadCrumb-Folders-Files-DB');
   }
 
@@ -71,13 +73,18 @@ export class LocalBaseService {
   GetMoviesTitlesFromLocal(){
     let finalData = new Observable((observer:any) => {
       this.db.collection('Movies').get().then((resultGET:any) => {
-        let allTitles:any = [];
-        resultGET[0].datas.forEach((data:any) => {
-          data.Data.Titles.map((x:any) => x.ServerId = data.ServerID);
-          allTitles = allTitles.concat(data.Data.Titles);
-        });
-        observer.next(allTitles);
-        observer.complete();
+        try{
+          let allTitles:any = [];
+          resultGET[0].datas.forEach((data:any) => {
+            data.Data.Titles.map((x:any) => x.ServerId = data.ServerID);
+            allTitles = allTitles.concat(data.Data.Titles);
+          });
+          observer.next(allTitles);
+          observer.complete();
+        }
+        catch(ex){
+          this.OpenSettings();
+        }
       });
     })
     return finalData;
@@ -86,13 +93,18 @@ export class LocalBaseService {
   GetTvshowTitlesFromLocal(){
     let finalData = new Observable((observer:any) => {
       this.db.collection('TvShows').get().then((resultGET:any) => {
-        let allTitles:any = [];
-        resultGET[0].datas.forEach((data:any) => {
-          data.Data.Titles.map((x:any) => x.ServerId = data.ServerID);
-          allTitles = allTitles.concat(data.Data.Titles);
-        });
-        observer.next(allTitles);
-        observer.complete();
+        try{
+          let allTitles:any = [];
+          resultGET[0].datas.forEach((data:any) => {
+            data.Data.Titles.map((x:any) => x.ServerId = data.ServerID);
+            allTitles = allTitles.concat(data.Data.Titles);
+          });
+          observer.next(allTitles);
+          observer.complete();
+        }
+        catch(ex){
+          this.OpenSettings();
+        }
       });
     })
     return finalData;
@@ -101,10 +113,15 @@ export class LocalBaseService {
   GetMoviesLinksFromLocalByServerIdAndMovieId(ServerId:any, MovieId:any){
     let finalData = new Observable((observer:any) => {
       this.db.collection('Movies').get().then((resultGET:any) => {
-        let allLinks:any = [];
-        allLinks = resultGET[0].datas.find((x:any) => x.ServerID == ServerId).Data.Links.filter((x:any) => x.Movies_Id == MovieId);
-        observer.next(allLinks);
-        observer.complete();
+        try{
+          let allLinks:any = [];
+          allLinks = resultGET[0].datas.find((x:any) => x.ServerID == ServerId).Data.Links.filter((x:any) => x.Movies_Id == MovieId);
+          observer.next(allLinks);
+          observer.complete();
+        }
+        catch(ex){
+          this.OpenSettings();
+        }
       });
     })
     return finalData;
@@ -113,10 +130,15 @@ export class LocalBaseService {
   GetTvShowSeasonsFromLocalByServerIdAndTvShowId(ServerId:any, TvShowId:any){
     let finalData = new Observable((observer:any) => {
       this.db.collection('TvShows').get().then((resultGET:any) => {
-        let allSeasons:any = [];
-        allSeasons = resultGET[0].datas.find((x:any) => x.ServerID == ServerId).Data.Seasons.filter((x:any) => x.Series_Id == TvShowId);
-        observer.next(allSeasons);
-        observer.complete();
+        try{
+          let allSeasons:any = [];
+          allSeasons = resultGET[0].datas.find((x:any) => x.ServerID == ServerId).Data.Seasons.filter((x:any) => x.Series_Id == TvShowId);
+          observer.next(allSeasons);
+          observer.complete();
+        }
+        catch(ex){
+          this.OpenSettings();
+        }
       });
     })
     return finalData;
@@ -125,10 +147,15 @@ export class LocalBaseService {
   GetTvShowEpisodesFromLocalByServerIdAndSeasonId(ServerId:any, SeasonId:any){
     let finalData = new Observable((observer:any) => {
       this.db.collection('TvShows').get().then((resultGET:any) => {
-        let allSeasons:any = [];
-        allSeasons = resultGET[0].datas.find((x:any) => x.ServerID == ServerId).Data.Episodes.filter((x:any) => x.Season_Id == SeasonId);
-        observer.next(allSeasons);
-        observer.complete();
+        try{
+          let allSeasons:any = [];
+          allSeasons = resultGET[0].datas.find((x:any) => x.ServerID == ServerId).Data.Episodes.filter((x:any) => x.Season_Id == SeasonId);
+          observer.next(allSeasons);
+          observer.complete();
+        }
+        catch(ex){
+          this.OpenSettings();
+        }
       });
     })
     return finalData;
@@ -137,12 +164,22 @@ export class LocalBaseService {
   GetEpisodeLinksFromLocalByServerIdAndEpisodeId(ServerId:any, EpisodeId:any){
     let finalData = new Observable((observer:any) => {
       this.db.collection('TvShows').get().then((resultGET:any) => {
-        let allSeasons:any = [];
-        allSeasons = resultGET[0].datas.find((x:any) => x.ServerID == ServerId).Data.Links.filter((x:any) => x.Episode_Id == EpisodeId);
-        observer.next(allSeasons);
-        observer.complete();
+        try{
+          let allSeasons:any = [];
+          allSeasons = resultGET[0].datas.find((x:any) => x.ServerID == ServerId).Data.Links.filter((x:any) => x.Episode_Id == EpisodeId);
+          observer.next(allSeasons);
+          observer.complete();
+        }
+        catch(ex){
+          this.OpenSettings();
+        }
       });
     })
     return finalData;
+  }
+
+  OpenSettings(){
+    this.router.navigate(['/Settings']);
+    document.getElementById("fullPageLoaderContainer")?.classList.remove("show");
   }
 }
