@@ -75,10 +75,9 @@
 
 .movieLinksContainer{
   width: 100%;
-  display: table;
   overflow-x: auto;
   height: max-content;
-  padding: 30px 0px;
+  padding: 10px 0px;
 }
 
 .movieLinksTable th{
@@ -150,10 +149,41 @@
   width: 95%;
 }
 
+.cardsContainer{
+  margin: 15px;
+  max-width: 100%;
+}
+
+.card{
+  background-color: black;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.card-row{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-head{
+  border-bottom: 1px solid rgb(40, 40, 43);;
+  padding: 10px;
+  padding-bottom: 5px;
+}
+
+.card-foot{
+  padding: 10px;
+  padding-top: 5px;
+}
+
 @media only screen and (max-width: 800px) {
   .movieDataContainer{
     position: static !important;
     display: block;
+    margin-bottom: 0px;
   }
 
   .movieImageContainer{
@@ -174,6 +204,14 @@
 
   .movieDataContainer{
     padding: 0px 10px;
+  }
+
+  .LinkDataTable .linkButton{
+    width: 100%;
+  }
+
+  .buttonContainer{
+    width: 100%;
   }
 }
 

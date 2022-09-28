@@ -21,28 +21,20 @@
     </div>
   </div>
   <div class="movieLinksContainer">
-    <table class="movieLinksTable">
-      <thead>
-        <tr>
-          <th width="5%" class="eclipsisText hideBefore500">#</th>
-          <th width="10%" class="eclipsisText">Quality</th>
-          <th width="10%" class="eclipsisText">Language</th>
-          <th class="hideBefore800 eclipsisText">Subtitle</th>
-          <th width="10%" class="eclipsisText">Size</th>
-          <th width="10%" class="eclipsisText">Streamable</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let link of MovieLinks; let i = index" (click)="showLinksModal(link)">
-          <td class="hideBefore500">{{i + 1}}</td>
-          <td>{{link.Link_Quality}}</td>
-          <td>{{link.Link_Language}}</td>
-          <td class="hideBefore800 eclipsisText">{{link.Link_Subtitles}}</td>
-          <td>{{link.Link_Size}}</td>
-          <td>{{link.Streamable}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="cardsContainer">
+      <div style="font-size: 18px; margin-bottom: 20px;">Links</div>
+      <div class="card" *ngFor="let link of MovieLinks; let i = index" (click)="showLinksModal(link)">
+        <div class="card-head">
+          <div style="font-size: 15px;" class="card-row">{{i + 1}}. Quality - {{link.Link_Quality}}</div>
+          <div style="font-size: 12px; color: #a3a3a3" class="card-row">Audio - {{link.Link_Language}}</div>
+          <div style="font-size: 12px; color: #a3a3a3" class="card-row">Subtitles - {{link.Link_Subtitles}}</div>
+        </div>
+        <div class="card-foot">
+          <div style="font-size: 12px;">File Size - {{link.Link_Size}}</div>
+          <div style="font-size: 12px;">Streamable - {{link.Streamable}}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
