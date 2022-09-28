@@ -31,14 +31,22 @@ export class OpenerComponent implements OnInit {
 
 
   getCurrentMovieData(){
+    let completeCount:number = 0;
+    this._cs.ShowFullPageLoader();
     this.LocalBase.GetMoviesTitlesFromLocal().subscribe((response:any) => {
       this.MovieTitle = response.find((x:any) => x.ServerId == this.ServerId && x.Movies_Id == this.MovieId);
-      console.log(this.MovieTitle);
+      completeCount++;
+      if(completeCount >= 2){
+        this._cs.HideFullPageLoader();
+      }
     })
 
     this.LocalBase.GetMoviesLinksFromLocalByServerIdAndMovieId(this.ServerId,this.MovieId).subscribe((response:any) => {
       this.MovieLinks = response;
-      console.log(this.MovieLinks);
+      completeCount++;
+      if(completeCount >= 2){
+        this._cs.HideFullPageLoader();
+      }
     })
   }
 
