@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
   }
 
   OpenRoute(menu:any){
+    this.CloseMenu();
     if(menu.route == "justRefreshData"){
       this.RefreshData();
     }

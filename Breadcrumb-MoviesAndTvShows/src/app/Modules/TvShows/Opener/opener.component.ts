@@ -31,15 +31,25 @@ export class OpenerComponent implements OnInit {
   ngOnInit(): void {
     this.TvShowId = this.route.snapshot.paramMap.get('TvShowId');
     this.ServerId = this.route.snapshot.paramMap.get('ServerId');
-    this.getCurrentMovieData();
+    this.getCurrentTvShowData();
   }
 
-  getCurrentMovieData(){
+  getCurrentTvShowData(){
+    let completeCount:number = 0;
+    this._cs.ShowFullPageLoader();
     this.LocalBase.GetTvshowTitlesFromLocal().subscribe((response:any) => {
       this.TvShowTitle = response.find((x:any) => x.ServerId == this.ServerId && x.Series_Id == this.TvShowId);
+      completeCount++;
+      if(completeCount >= 2){
+        this._cs.HideFullPageLoader();
+      }
     })
 
     this.LocalBase.GetTvShowSeasonsFromLocalByServerIdAndTvShowId(this.ServerId,this.TvShowId).subscribe((response:any) => {
+      completeCount++;
+      if(completeCount >= 2){
+        this._cs.HideFullPageLoader();
+      }
       this.TvShowSeasons = [...response];
       this.selectSeason = this.TvShowSeasons[0].Season_Id;
       this.UpdateCurrentEpisodes();
@@ -52,7 +62,9 @@ export class OpenerComponent implements OnInit {
   }
 
   UpdateCurrentEpisodes(){
+    this._cs.ShowFullPageLoader();
     this.LocalBase.GetTvShowEpisodesFromLocalByServerIdAndSeasonId(this.ServerId, this.selectSeason).subscribe((response:any) => {
+      this._cs.HideFullPageLoader();
       this.currentEpisodes = [...response];
     })
   }
@@ -64,13 +76,15 @@ export class OpenerComponent implements OnInit {
 
   showEpisodeLinksModel(episode:any){
     this.selectedEpisode = episode;
-    this.showEpisodeLinksModal = true;
     this.UpdateCurrentLinks();
   }
 
   UpdateCurrentLinks(){
+    this._cs.ShowFullPageLoader();
     this.LocalBase.GetEpisodeLinksFromLocalByServerIdAndEpisodeId(this.ServerId, this.selectedEpisode.Episode_Id).subscribe((response:any) => {
       this.currentLinks = [...response];
+      this._cs.HideFullPageLoader();
+      this.showEpisodeLinksModal = true;
     })
   }
 
