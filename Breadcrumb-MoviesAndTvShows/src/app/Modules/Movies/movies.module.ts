@@ -11,6 +11,8 @@ import { ModalModule } from '../../gs-lib/modal/modal.module';
 //----------------------------------------------------------------------------------------------
 
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { PipesModule } from '../Pipes/pipes.module';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     MoviesRoutingModule,
     CarouselModule,
     ModalModule,
-    NzButtonModule
+    NzButtonModule,
+    PipesModule
   ]
 })
 export class MoviesModule { }

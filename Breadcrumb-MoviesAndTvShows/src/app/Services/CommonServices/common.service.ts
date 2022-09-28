@@ -184,12 +184,10 @@ export class CommonService {
   }
 
   OpenLink(link:string){
-    console.log(link);
     window.open(link);
   }
 
   CopyToClipboard(data:string){
-    console.log(data);
     navigator.clipboard.writeText(data);
   }
 

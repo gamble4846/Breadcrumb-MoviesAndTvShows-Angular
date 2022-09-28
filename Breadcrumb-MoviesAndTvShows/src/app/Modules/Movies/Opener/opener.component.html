@@ -86,25 +86,31 @@
                     <button nz-button nzType="default" nzDanger class="linkButton" (click)="_cs.OpenLink(selectedLink.Link_link)">Open Link</button>
                   </div>
                   <div class="buttonContainer">
-                    <button nz-button nzType="default" nzDanger class="linkButton"(click)="_cs.CopyToClipboard(selectedLink.Link_link)">Copy Link</button>
+                    <button nz-button nzType="default" nzDanger class="linkButton" (click)="_cs.CopyToClipboard(selectedLink.Link_link)">Copy Link</button>
                   </div>
                   <div class="buttonContainer">
-                    <button nz-button nzType="default" nzDanger class="linkButton">View Link</button>
+                    <button nz-button nzType="default" nzDanger class="linkButton" (click)="ViewLink(selectedLink.Link_link, true)">View Link</button>
                   </div>
                   <div class="buttonContainer">
                     <button nz-button nzType="default" nzDanger class="linkButton" (click)="_cs.OpenLink(_cs.CreateDirectLinkFromLink(selectedLink.Link_link))">Open Direct Link</button>
                   </div>
                   <div class="buttonContainer">
-                    <button nz-button nzType="default" nzDanger class="linkButton">View Direct Link</button>
+                    <button nz-button nzType="default" nzDanger class="linkButton" (click)="ViewLink(selectedLink.Link_link, false)">View Direct Link</button>
                   </div>
                   <div class="buttonContainer">
-                    <button nz-button nzType="default" nzDanger class="linkButton">Copy Direct Link</button>
+                    <button nz-button nzType="default" nzDanger class="linkButton" (click)="_cs.CopyToClipboard(_cs.CreateDirectLinkFromLink(selectedLink.Link_link))">Copy Direct Link</button>
                   </div>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
+
+        <gs-modal [showModal]="showViewModal" [showFooter]="false" (closeModal)="hideViewModal($event)" modalWidth="1100px" modalHeight="550px" modalBackgroundColor="#00000066" HeaderBackgroundColor="#28282B" ContentBackgroundColor="#28282B">
+          <div header>View</div>
+          <div content style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center;" [innerHTML]="viewRawHTML | safe:'html'">
+          </div>
+        </gs-modal>
       </div>
     </div>
   </div>

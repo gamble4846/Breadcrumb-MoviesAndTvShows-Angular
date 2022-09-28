@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from 'src/app/Services/CommonServices/common.service';
 import { LocalBaseService } from 'src/app/Services/LocalBase/local-base.service';
@@ -16,8 +17,11 @@ export class OpenerComponent implements OnInit {
   MovieLinks:any = [];
   showLinkModal:boolean = false;
   selectedLink:any = {};
+  showViewModal:boolean = false;
+  iframeLink:any = "";
+  viewRawHTML:any = "";
 
-  constructor(private route: ActivatedRoute, private LocalBase: LocalBaseService, public _cs: CommonService) { }
+  constructor(public _sanitizer: DomSanitizer, private route: ActivatedRoute, private LocalBase: LocalBaseService, public _cs: CommonService) { }
 
   ngOnInit(): void {
     this.MovieId = this.route.snapshot.paramMap.get('MovieId');
@@ -48,5 +52,35 @@ export class OpenerComponent implements OnInit {
   showLinksModal(link:any){
     this.showLinkModal = true;
     this.selectedLink = link;
+  }
+
+  ViewLink(link:any, iFrameOrDirectVideo:boolean){
+    this.showViewModal = true;
+    this.iframeLink = link;
+    if(iFrameOrDirectVideo){
+      setTimeout(() => {
+        this.viewRawHTML = `
+          <iframe src="https://drive.google.com/file/d/` + link.split("/")[5] + `/preview" style="width: 95%; height: 95%; outline: none; border: 0px;"></iframe>
+        `;
+      }, 300);
+    }
+    else{
+      setTimeout(() => {
+        this.viewRawHTML = `
+          <video style="width: 95%; height: 95%; outline: none; border: 0px;" controls>
+            <source src="` + this._cs.CreateDirectLinkFromLink(link) + `" type="video/mp4">
+          </video>
+        `;
+      }, 300);
+    }
+
+  }
+
+  hideViewModal(event:any){
+    if(event){
+      this.showViewModal = false;
+      this.viewRawHTML = "";
+    }
+    console.log(event);
   }
 }
