@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { option, selectData } from './selectData.model';
 
 @Component({
@@ -22,6 +22,7 @@ export class SelectComponent implements OnInit {
 
   //------------------- View Childs ---------------------------
   @ViewChild('selectContainer') selectContainer!: ElementRef;
+  @ViewChild('outerSelectedTabsContainer') outerSelectedTabsContainer!: ElementRef;
   //-----------------------------------------------------------
 
   //---------- GLOBALS -----------------------------------
@@ -30,6 +31,11 @@ export class SelectComponent implements OnInit {
   onlyChecked:Array<option> = [];
   searchValue:string = "";
   clickWasSVG:boolean = false;
+  removedTags:number = 0;
+  //------------------------------------------------------
+
+  //------------------------------------------------------
+  @Output() DropDownChanged = new EventEmitter<any>();
   //------------------------------------------------------
 
   constructor() { }
@@ -79,6 +85,7 @@ export class SelectComponent implements OnInit {
       else{
         this.allCheckBox = false;
       }
+      this.DropDownChanged.emit(this.selectData);
     }
 
     if(this.isParentChild){
@@ -100,8 +107,52 @@ export class SelectComponent implements OnInit {
           }
         })
       })
+      this.DropDownChanged.emit(this.selectDataParentChild);
     }
+    this.removedTags = 0;
+    this.UpdateOnlyCheckedAccordingToWidth();
     //-------------------------------------------------------------------
+  }
+
+  UpdateOnlyCheckedAccordingToWidth(){
+    setTimeout(() => {
+      if(this.onlyChecked.length > 0){
+        let selectedListWidth = this.outerSelectedTabsContainer.nativeElement.offsetWidth;
+        let mainWidth = this.selectContainer.nativeElement.offsetWidth;
+        
+        let otherOption:option = {
+          value: "G-Hide",
+          text: "and ",
+        }
+
+        console.log(selectedListWidth, mainWidth);
+        if(selectedListWidth > mainWidth){
+          this.onlyChecked.pop();
+          this.removedTags++;
+          otherOption.text = "and " + this.removedTags + " more..."
+          this.onlyChecked.push(otherOption);
+          this.onlyChecked = [...this.onlyChecked];
+          setTimeout(() => {
+            selectedListWidth = this.outerSelectedTabsContainer.nativeElement.offsetWidth;
+            mainWidth = this.selectContainer.nativeElement.offsetWidth;
+    
+            if(selectedListWidth > mainWidth){
+              this.onlyChecked.pop();
+              this.onlyChecked = [...this.onlyChecked]
+              this.UpdateOnlyCheckedAccordingToWidth();
+            }
+          }, 10);
+        }
+        else if(this.removedTags > 0){
+          this.onlyChecked.pop();
+          this.onlyChecked.pop();
+          this.removedTags += 2;
+          otherOption.text = "and " + this.removedTags + " more..."
+          this.onlyChecked.push(otherOption);
+          this.onlyChecked = [...this.onlyChecked];
+        }
+      }
+    }, 10);
   }
 
   updateChildrenCheckboxAccordingToParent(){
@@ -227,7 +278,7 @@ export class SelectComponent implements OnInit {
       }
       else{
         this.selectData.map((option:option) => {
-          if(option.text.includes(this.searchValue)){
+          if(option.text.toLowerCase().includes(this.searchValue.toLowerCase())){
             option.search = true;
           }
         })
@@ -244,7 +295,7 @@ export class SelectComponent implements OnInit {
       }
       else{
         this.selectDataParentChild.map((fullOption:selectData) => fullOption.children.forEach((x:option) => {
-          if(x.text.includes(this.searchValue)){
+          if(x.text.toLowerCase().includes(this.searchValue.toLowerCase())){
             x.search = true;
           }
         }));

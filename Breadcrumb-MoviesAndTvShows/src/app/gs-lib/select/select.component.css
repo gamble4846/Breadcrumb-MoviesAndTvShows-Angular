@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: white;
 }
 
 .selectTextBoxData{
@@ -12,16 +13,24 @@
   padding: 0px 10px;
 }
 
+.outerSelectedTabsContainer{
+  width: max-content;
+}
+
+.selectedTabText{
+  white-space: nowrap;
+}
+
 .selectTextBoxData{
   width: 90%;
   overflow: hidden;
+  cursor: default;
 }
 
 .selectTextBoxArrowButtonContainer{
   height: 100%;
   max-width: 20px;
   width: 10%;
-  padding: 0px 10px;
   cursor: pointer;
 }
 
@@ -44,6 +53,7 @@
   transform: scale(1,0);
   transform-origin: top center;
   height: max-content;
+  z-index: 2;
 }
 
 .selectDropDownContainer.show{
@@ -118,13 +128,13 @@
 
 .searchContainer{
   padding: 5px 10px;
-  width: calc(100% - (20px));
+  min-width: calc(100% - (20px));
   display: flex;
   align-items: center;
 }
 
 .searchTextBox{
-  width: calc(100% - (20px + 30px));
+  width: 100%;
   border: 1px solid rgb(232, 232, 232);
   border-right: 0px;
   font-size: 15px;

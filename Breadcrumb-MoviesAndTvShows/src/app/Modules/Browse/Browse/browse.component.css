@@ -1,3 +1,14 @@
-.browsingOptionsOuterContainer{
+.searchAndFiltersContainer{
+  padding: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
 
+.filterContainer{
+  margin: 10px 0px;
+  color: black;
+}
+
+.searchContainer{
+  margin: 10px 0px;
 }
