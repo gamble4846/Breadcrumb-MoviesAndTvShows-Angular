@@ -2,35 +2,27 @@
   <div class="searchAndFiltersContainer">
     <div nz-row class="searchAndFiltersContainer-ROW" [nzGutter]="16">
       <div nz-col nzSpan="24" class="searchContainer">
-        <input nz-input placeholder="Search..."/>
+        <input nz-input placeholder="Search..." [(ngModel)]="searchText"/>
       </div>
     </div>
     <div nz-row class="searchAndFiltersContainer-ROW" [nzGutter]="16">
-      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 6}" class="filterContainer">
-        <gs-select [showAllCheckbox]="true" [allowMultiSelect]="true" [isParentChild]="true" [showSearch]="true"></gs-select>
+      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 8}" class="filterContainer">
+        <gs-select [selectData]="finalGenereSelectData" [isParentChild]="false" selectPlaceholder="Select Genre" [showAllCheckbox]="true" [allowMultiSelect]="true" [showSearch]="true"></gs-select>
       </div>
-      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 6}" class="filterContainer">
-        <gs-select [showAllCheckbox]="true" [allowMultiSelect]="true" [isParentChild]="true" [showSearch]="true"></gs-select>
+      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 8}" class="filterContainer">
+        <gs-select [selectData]="sortingMethodSelectData" selectPlaceholder="Select Sorting Method"></gs-select>
       </div>
-      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 6}" class="filterContainer">
-        <gs-select [showAllCheckbox]="true" [allowMultiSelect]="true" [isParentChild]="true" [showSearch]="true"></gs-select>
+      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 8}" class="filterContainer">
+        <gs-select [selectData]="sortingDirectionSelectData" selectPlaceholder="Select Sorting Direction"></gs-select>
       </div>
-      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 6}" class="filterContainer">
-        <gs-select [showAllCheckbox]="true" [allowMultiSelect]="true" [isParentChild]="true" [showSearch]="true"></gs-select>
+      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 8}" class="filterContainer">
+        <gs-select [selectData]="movieOrTvshowSelectData" selectPlaceholder="Select Movie Or TvShow"></gs-select>
       </div>
-    </div>
-    <div nz-row class="searchAndFiltersContainer-ROW" [nzGutter]="16">
-      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 6}" class="filterContainer">
-        <gs-select [showAllCheckbox]="true" [allowMultiSelect]="true" [isParentChild]="true" [showSearch]="true"></gs-select>
+      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 8}" class="filterContainer">
+        <gs-select [selectData]="finalReleaseYearsSelectData" selectPlaceholder="Select Release Years" [showAllCheckbox]="true" [allowMultiSelect]="true" [showSearch]="true"></gs-select>
       </div>
-      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 6}" class="filterContainer">
-        <gs-select [showAllCheckbox]="true" [allowMultiSelect]="true" [isParentChild]="true" [showSearch]="true"></gs-select>
-      </div>
-      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 6}" class="filterContainer">
-        <gs-select [showAllCheckbox]="true" [allowMultiSelect]="true" [isParentChild]="true" [showSearch]="true"></gs-select>
-      </div>
-      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 6}" class="filterContainer">
-        <gs-select [showAllCheckbox]="true" [allowMultiSelect]="true" [isParentChild]="true" [showSearch]="true"></gs-select>
+      <div nz-col [nzXs]="{span: 12}" [nzSm]="{span: 8}" class="filterContainer">
+        <button nz-button nzType="default" nzDanger class="linkButton" (click)="searchClicked()">Search</button>
       </div>
     </div>
   </div>

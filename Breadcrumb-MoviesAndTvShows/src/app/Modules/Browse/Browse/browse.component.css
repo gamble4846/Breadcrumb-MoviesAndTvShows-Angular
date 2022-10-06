@@ -12,3 +12,9 @@
 .searchContainer{
   margin: 10px 0px;
 }
+
+.linkButton{
+  background-color: rgb(45, 0, 0);
+  color: white;
+  width: 100%;
+}

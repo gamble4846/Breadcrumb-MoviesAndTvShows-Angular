@@ -200,4 +200,35 @@ export class CommonService {
     let finalLink = "https://www.googleapis.com/drive/v3/files/"+justID+"?alt=media&key=" + this.SessionManagement.GetSettingsFromLocal("GoogleAPIKey");
     return finalLink;
   }
+
+  GetListOfAllReleaseYearsMovies(){
+    let finalData = new Observable((observer:any) => {
+      this.LocalBase.GetMoviesTitlesFromLocal().subscribe((response:any) => {
+        let allReleaseYears:any = [];
+        response.forEach((data:any) => {
+          allReleaseYears = allReleaseYears.concat(data.Movies_ReleaseYear.toString());
+        });
+        allReleaseYears = allReleaseYears.filter(this.onlyUnique);
+        observer.next(allReleaseYears);
+        observer.complete();
+      });
+    })
+    return finalData;
+  }
+
+  GetListOfAllReleaseYearsTvShow(){
+    let finalData = new Observable((observer:any) => {
+      this.LocalBase.GetTvshowTitlesFromLocal().subscribe((response:any) => {
+        let allReleaseYears:any = [];
+        response.forEach((data:any) => {
+          allReleaseYears = allReleaseYears.concat(data.Series_ReleaseYear.toString());
+        });
+        allReleaseYears = allReleaseYears.filter(this.onlyUnique);
+        observer.next(allReleaseYears);
+        observer.complete();
+      });
+    })
+    return finalData;
+  }
+
 }

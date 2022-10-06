@@ -77,3 +77,11 @@
 .ant-spin-dot-item {
   background-color: red !important;
 }
+
+.filterContainer .selectTextBoxContainer{
+  border-radius: 0px !important;
+}
+
+.filterContainer .selectDropDownContainer{
+  border-radius: 0px !important;
+}

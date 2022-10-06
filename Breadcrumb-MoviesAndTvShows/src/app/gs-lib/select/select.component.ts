@@ -41,7 +41,13 @@ export class SelectComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.selectData);
+    this.dropDownChanged(false);
     this.searchValueChanged();
+  }
+
+  ngOnChanges() {
+    this.ngOnInit();
   }
 
   showDropDown(){
@@ -75,7 +81,7 @@ export class SelectComponent implements OnInit {
     }
   }
 
-  dropDownChanged(){
+  dropDownChanged(emit:boolean = true){
     //------------------ Changing All Checked Box -----------------------
     if(!this.isParentChild){
       this.onlyChecked = this.selectData.filter((x:option) => x.checked == true);
@@ -85,7 +91,9 @@ export class SelectComponent implements OnInit {
       else{
         this.allCheckBox = false;
       }
-      this.DropDownChanged.emit(this.selectData);
+      if(emit){
+        this.DropDownChanged.emit(this.selectData);
+      }
     }
 
     if(this.isParentChild){
@@ -107,7 +115,9 @@ export class SelectComponent implements OnInit {
           }
         })
       })
-      this.DropDownChanged.emit(this.selectDataParentChild);
+      if(emit){
+        this.DropDownChanged.emit(this.selectDataParentChild);
+      }
     }
     this.removedTags = 0;
     this.UpdateOnlyCheckedAccordingToWidth();
@@ -119,13 +129,12 @@ export class SelectComponent implements OnInit {
       if(this.onlyChecked.length > 0){
         let selectedListWidth = this.outerSelectedTabsContainer.nativeElement.offsetWidth;
         let mainWidth = this.selectContainer.nativeElement.offsetWidth;
-        
+
         let otherOption:option = {
           value: "G-Hide",
           text: "and ",
         }
 
-        console.log(selectedListWidth, mainWidth);
         if(selectedListWidth > mainWidth){
           this.onlyChecked.pop();
           this.removedTags++;
@@ -135,7 +144,7 @@ export class SelectComponent implements OnInit {
           setTimeout(() => {
             selectedListWidth = this.outerSelectedTabsContainer.nativeElement.offsetWidth;
             mainWidth = this.selectContainer.nativeElement.offsetWidth;
-    
+
             if(selectedListWidth > mainWidth){
               this.onlyChecked.pop();
               this.onlyChecked = [...this.onlyChecked]
